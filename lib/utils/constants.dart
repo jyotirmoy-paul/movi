@@ -26,6 +26,6 @@ const kGeneralTextStyle = TextStyle(
 const kHeadingTextStyle = TextStyle(
   fontFamily: 'ArchitectsDaughter',
   fontWeight: FontWeight.w900,
-  fontSize: 28.0,
+  fontSize: 35.0,
   color: kDarkLava,
 );

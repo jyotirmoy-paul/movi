@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/painting.dart';
 import 'package:movi/models/anime_search_result_model.dart';
+import 'package:movi/screens/anime_episode_screen.dart';
 import 'package:movi/services/anime_service.dart';
 import 'package:movi/utils/constants.dart';
 
@@ -17,16 +18,24 @@ class SearchResultScreen extends StatefulWidget {
 
 class _SearchResultScreenState extends State<SearchResultScreen> {
   bool showLoadingIndicator = true;
-  List<Widget> widgetLists;
+  List<Widget> widgetList = [];
+
+  void showEpisodes(AnimeSearchResultModel anime) {
+    var pageRoute = MaterialPageRoute(
+      builder: (ctx) => AnimeEpisodeScreen(
+        anime: anime,
+      ),
+    );
+    Navigator.push(context, pageRoute);
+  }
 
   void fetchSearchedAnime(String searchTerm) async {
-    widgetLists = [];
-
     List<AnimeSearchResultModel> l = await AnimeService.searchAnime(searchTerm);
 
     for (var anime in l) {
-      widgetLists.add(
+      widgetList.add(
         ListTile(
+          onTap: () => showEpisodes(anime),
           title: Image.network(anime.posterUrl),
           subtitle: Text(
             anime.titleText,
@@ -69,7 +78,7 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
     final expandedListView = Expanded(
       child: ListView(
         padding: listViewPadding,
-        children: widgetLists,
+        children: widgetList,
       ),
     );
 
