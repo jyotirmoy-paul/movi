@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:movi/models/anime_episode_model.dart';
 import 'package:movi/models/anime_search_result_model.dart';
+import 'package:movi/screens/view_screen.dart';
 import 'package:movi/services/anime_service.dart';
 import 'package:movi/utils/constants.dart';
 
@@ -20,6 +21,13 @@ class _AnimeEpisodeScreenState extends State<AnimeEpisodeScreen> {
   bool showLoadingIndicator = true;
   List<Widget> widgetList = [];
 
+  void viewEpisode(String url) {
+    var pageRoute = MaterialPageRoute(
+      builder: (ctx) => ViewScreen(url: url),
+    );
+    Navigator.push(context, pageRoute);
+  }
+
   void fetchEpisodes(String url) async {
     Map<String, dynamic> m = await AnimeService.getAnimeEpisodes(url);
     if (m.isEmpty) {
@@ -38,6 +46,7 @@ class _AnimeEpisodeScreenState extends State<AnimeEpisodeScreen> {
     for (var episode in episodes) {
       widgetList.add(
         ListTile(
+          onTap: () => viewEpisode(episode.episodeUrl),
           title: Text(episode.episodeNumber, style: kGeneralTextStyle),
           subtitle: Text(episode.createdDate, style: kLabelTextStyle),
         ),
@@ -103,13 +112,16 @@ class ImageTitleView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(
       children: <Widget>[
-        Container(
-          decoration: BoxDecoration(
-            image: DecorationImage(
-              colorFilter: colorFilter,
-              fit: BoxFit.fitWidth,
-              alignment: FractionalOffset.center,
-              image: NetworkImage(widget.anime.posterUrl),
+        Hero(
+          tag: widget.anime.animeUrl,
+          child: Container(
+            decoration: BoxDecoration(
+              image: DecorationImage(
+                colorFilter: colorFilter,
+                fit: BoxFit.fitWidth,
+                alignment: FractionalOffset.center,
+                image: NetworkImage(widget.anime.posterUrl),
+              ),
             ),
           ),
         ),

@@ -19,6 +19,7 @@ dependencies:
 
   # networking
   http: ^0.12.1
+  webview_flutter: ^0.3.22+1
 
   # scrapping
   html: ^0.14.0+3

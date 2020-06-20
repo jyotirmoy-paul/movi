@@ -27,6 +27,12 @@ class _SearchScreenState extends State<SearchScreen> {
   void requestFocus() => Focus.of(context).requestFocus(FocusNode());
 
   @override
+  void dispose() {
+    _controller.dispose();
+    super.dispose();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: kIvory,

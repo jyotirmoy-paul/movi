@@ -2,7 +2,7 @@ import 'package:http/http.dart' as http;
 
 class Networking {
   static const String ERROR = 'error';
-  static Map<String, String> _header = {
+  static const Map<String, String> _header = {
     'User-Agent':
         'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36'
   };

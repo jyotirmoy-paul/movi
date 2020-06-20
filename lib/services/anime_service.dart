@@ -79,4 +79,19 @@ class AnimeService {
       EPISODES: l,
     };
   }
+
+  static Future<String> getVideoUrl(String url) async {
+    var responseBody = await Networking.getStringResponse(url);
+
+    if (responseBody == Networking.ERROR) {
+      return '';
+    }
+
+    var rawJson = _getRawJson(responseBody);
+
+    // todo: use links from a differnt path - link1, link2, linke3, lots of servers are available, send back a list
+    String link1 = jsonDecode(rawJson)['episode']['link1'];
+
+    return link1.split('&link')[0];
+  }
 }

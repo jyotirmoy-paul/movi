@@ -36,7 +36,8 @@ class _SearchResultScreenState extends State<SearchResultScreen> {
       widgetList.add(
         ListTile(
           onTap: () => showEpisodes(anime),
-          title: Image.network(anime.posterUrl),
+          title:
+              Hero(tag: anime.animeUrl, child: Image.network(anime.posterUrl)),
           subtitle: Text(
             anime.titleText,
             style: kGeneralTextStyle,
