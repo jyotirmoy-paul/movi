@@ -9,6 +9,7 @@
   "author": "Jyotirmoy Paul",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.17.1"
+    "express": "^4.17.1",
+    "node-html-parser": "^1.2.19"
   }
 }
