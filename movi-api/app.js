@@ -1,7 +1,6 @@
 const express = require("express");
 const https = require("https");
 const { parse } = require("node-html-parser");
-const { json } = require("express");
 
 const app = express();
 
@@ -48,7 +47,21 @@ function getLinkFromIFrame(iFrameUrl) {
   });
 }
 
-function getBackupPlayableUrl(mobile2Link) {
+function checkForMobile2Link(jsonResponse) {
+  const links = [
+    jsonResponse.episode.link1,
+    jsonResponse.episode.link2,
+    jsonResponse.episode.link3,
+    jsonResponse.episode.link4,
+  ];
+
+  var mobile2Link = links.find((l) => l.includes("/mobile2/"));
+  return mobile2Link;
+}
+
+function getBackupPlayableUrl(jsonResponse) {
+  const mobile2Link = checkForMobile2Link(jsonResponse);
+
   return new Promise((resolve, reject) => {
     https
       .get(mobile2Link, (rep) => {
@@ -97,7 +110,7 @@ function getPlayableUrl(serverUrl) {
             .toString()
             .replace("'", "")
             .split("sources:[{file: ")[1]
-            .split(",label: 'HD P','type' : 'mp4'}]")[0];
+            .split(",label: ")[0];
 
           resolve(mp4url);
         });
@@ -166,6 +179,15 @@ app.get("/api/anime/:animeID", (req, res) => {
     .on("error", (err) => res.send(getJsonError(err.toString())));
 });
 
+function returnJsonResponse(jsonResponse, link, res) {
+  res.send({
+    anime: jsonResponse.anime,
+    episode: jsonResponse.episode,
+    playableLink: link,
+    episodes: jsonResponse.episodes,
+  });
+}
+
 // get details regarding a particular episode - and get anime playable URL
 app.get("/api/anime/:animeID/:episodeID", (req, res) => {
   const url = `${_baseUrl}/anime/${req.params.animeID}/${req.params.episodeID}`;
@@ -181,8 +203,6 @@ app.get("/api/anime/:animeID/:episodeID", (req, res) => {
 
         const jsonResponse = getRawJson(body);
 
-        return res.send(jsonResponse);
-
         try {
           const extServers = jsonResponse.ext_servers;
           const vidstreamingService = extServers.find(
@@ -190,43 +210,16 @@ app.get("/api/anime/:animeID/:episodeID", (req, res) => {
           );
 
           getPlayableUrl(vidstreamingService.link)
-            .then((link) => {
-              res.send({
-                anime: jsonResponse.anime,
-                episode: jsonResponse.episode,
-                playableLink: link,
-                episodes: jsonResponse.episodes,
-              });
-            })
-            .catch((e) => {
-              res.send(getJsonError(e.toString()));
+            .then((link) => returnJsonResponse(jsonResponse, link, res))
+            .catch((_) => {
+              getBackupPlayableUrl(jsonResponse).then((link) =>
+                returnJsonResponse(jsonResponse, link, res)
+              );
             });
-        } catch (e) {
-          const links = [
-            jsonResponse.episode.link1,
-            jsonResponse.episode.link2,
-            jsonResponse.episode.link3,
-            jsonResponse.episode.link4,
-          ];
-
-          const mobile2Link = links.find((l) =>
-            l.toString().includes("mobile2")
+        } catch (_) {
+          getBackupPlayableUrl(jsonResponse).then((link) =>
+            returnJsonResponse(jsonResponse, link, res)
           );
-          if (mobile2Link) {
-            getBackupPlayableUrl(mobile2Link)
-              .then((link) => {
-                res.send({
-                  anime: jsonResponse.anime,
-                  episode: jsonResponse.episode,
-                  playableLink: link,
-                  episodes: jsonResponse.episodes,
-                });
-              })
-              .catch((e) => {
-                res.send(getJsonError(e.toString()));
-              });
-            return;
-          }
         }
       });
     })
