@@ -11,3 +11,46 @@ h5 {
   margin: 0;
   position: absolute;
 }
+
+.landing-screen-div {
+  height: 100vh;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
+    url("../assets/bg.jpg");
+  background-size: cover;
+  color: white;
+}
+
+.logo-text {
+  top: 2%;
+  left: 2%;
+}
+
+.main-content {
+  padding: 20px;
+  width: 50%;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.title-text,
+.subtitle-text,
+.input-group,
+.bottom-text {
+  text-align: center;
+  position: static;
+}
+
+.title-text {
+  font-weight: bold;
+  margin-bottom: 40px;
+}
+
+.input-group {
+  margin: 20px 0 15px;
+}
+
+.search-label {
+  margin-left: 10px;
+}

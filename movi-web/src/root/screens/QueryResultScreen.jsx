@@ -7,24 +7,29 @@ import AnimeItem from "../components/AnimeItem";
 import { makeStyles } from "@material-ui/core/styles";
 import Grid from "@material-ui/core/Grid";
 
-const useStyles = makeStyles((theme) => ({
+import Constants from "../../services/Util";
+
+const useStyles = makeStyles((_) => ({
   root: {
     flexGrow: 1,
   },
-  paper: {
-    padding: theme.spacing(2),
-    textAlign: "center",
-    color: theme.palette.text.secondary,
+  main: {
+    margin: "0 2%",
+    color: "black",
+  },
+  h4: {
+    paddingTop: "10px",
+    paddingBottom: "30px",
   },
 }));
 
-function QueryResultScreen({ match }) {
+export default function QueryResultScreen({ match }) {
   const {
     params: { query },
   } = match;
 
   useEffect(() => {
-    Networking.getResponse(`http://localhost:3000/api/query/${query}`)
+    Networking.getResponse(`${Constants.baseUrl}/api/query/${query}`)
       .then((body) => {
         setAnimeList(JSON.parse(body));
         setIsLoading(false);
@@ -40,13 +45,14 @@ function QueryResultScreen({ match }) {
   const classes = useStyles();
 
   return (
-    <div className="query-result-screen-div">
+    <div className={classes.main}>
       {isLoading ? (
         <LoadingIndicator />
       ) : (
         <div>
-          <h4>
-            Showing search results for <strong>{query}</strong>
+          <h4 className={classes.h4}>
+            Showing search results for <strong>{query}</strong>,{" "}
+            {animeList.length} results found.
           </h4>
 
           <div className={classes.root}>
@@ -63,5 +69,3 @@ function QueryResultScreen({ match }) {
     </div>
   );
 }
-
-export default QueryResultScreen;
