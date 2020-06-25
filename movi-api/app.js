@@ -47,4 +47,4 @@ app.get("/api/anime/:animeID/:episodeID", (req, res) => {
     .catch((err) => sendResponse(res, getJsonError(err)));
 });
 
-app.listen(process.env.PORT || 3000, () => console.log("Server started"));
+app.listen(process.env.app_port || 3000, () => console.log("Server started"));
