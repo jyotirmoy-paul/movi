@@ -3,9 +3,9 @@ const { parse } = require("node-html-parser");
 const Networking = require("./networking");
 const StreamService = require("./streamService");
 
-class AnimeService {
-  static _baseUrl = "https://www1.kickassanime.rs/";
+const baseUrl = "https://www1.kickassanime.rs/";
 
+class AnimeService {
   // method for converting html body to appData json object
   static getRawJson(responseBody) {
     const root = parse(responseBody, {
@@ -26,7 +26,7 @@ class AnimeService {
   }
 
   static queryAnimeBy(searchedQuery) {
-    const url = `${this._baseUrl}search?q=${searchedQuery}`;
+    const url = `${baseUrl}search?q=${searchedQuery}`;
 
     return new Promise((resolve, reject) => {
       Networking.getResponse(url)
@@ -36,7 +36,7 @@ class AnimeService {
   }
 
   static queryAnimeDetails(animeID) {
-    const url = `${this._baseUrl}/anime/${animeID}`;
+    const url = `${baseUrl}/anime/${animeID}`;
 
     return new Promise((resolve, reject) => {
       Networking.getResponse(url)
@@ -55,7 +55,7 @@ class AnimeService {
   }
 
   static queryEpisodeDetails(animeID, episodeID) {
-    const url = `${this._baseUrl}/anime/${animeID}/${episodeID}`;
+    const url = `${baseUrl}/anime/${animeID}/${episodeID}`;
 
     return new Promise((resolve, reject) => {
       Networking.getResponse(url)
