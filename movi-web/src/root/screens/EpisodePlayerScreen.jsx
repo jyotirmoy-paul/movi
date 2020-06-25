@@ -13,6 +13,7 @@ export default function EpisodePlayerScreen({ match }) {
   const [videoUrl, setVideoUrl] = useState("");
   const [epnum, setEpnum] = useState("");
   const [animeName, setAnimeName] = useState("");
+  const [links, setLinks] = useState([]);
 
   useEffect(() => {
     Networking.getResponse(
@@ -21,17 +22,27 @@ export default function EpisodePlayerScreen({ match }) {
       .then((response) => {
         const jsonResponse = JSON.parse(response);
 
+        const l = [
+          jsonResponse.episode.link1,
+          jsonResponse.episode.link2,
+          jsonResponse.episode.link3,
+          jsonResponse.episode.link4,
+        ].filter((l) => l !== "");
+
         setAnimeName(jsonResponse.anime.name);
         setEpnum(jsonResponse.episode.name);
         setVideoUrl(jsonResponse.playableLink);
+        setLinks(l);
 
         setIsLoading(false);
       })
       .catch((err) => console.log(err));
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const style = {
     mainDiv: {
+      position: "static",
       color: "black",
       margin: "0 2%",
       textAlign: "center",
@@ -39,7 +50,12 @@ export default function EpisodePlayerScreen({ match }) {
     },
     video: {
       marginTop: "20px",
-      width: "50%",
+      width: "70%",
+    },
+    a: {
+      display: "block",
+      marginTop: "5px",
+      marginBottom: "5px",
     },
   };
 
@@ -54,9 +70,29 @@ export default function EpisodePlayerScreen({ match }) {
             <strong>{epnum}</strong>
           </h5>
 
-          <video style={style.video} controls>
-            <source src={videoUrl} />
-          </video>
+          {videoUrl !== null ? (
+            <video style={style.video} controls>
+              <source src={videoUrl} />
+            </video>
+          ) : (
+            <div>
+              <p>
+                Something went wrong, Please try watching from any of the
+                following links:
+              </p>
+              {links.map((l, index) => (
+                <a
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  style={style.a}
+                  href={l}
+                  key={`external-server-links${index}`}
+                >
+                  Link {index + 1}
+                </a>
+              ))}
+            </div>
+          )}
         </div>
       )}
     </div>

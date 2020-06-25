@@ -56,9 +56,9 @@ export default function QueryResultScreen({ match }) {
           </h4>
 
           <div className={classes.root}>
-            <Grid container spacing={3}>
+            <Grid container spacing="3">
               {animeList.map((item) => (
-                <Grid item xs={3}>
+                <Grid item xs="6" sm="4" md="3">
                   <AnimeItem data={item} />
                 </Grid>
               ))}

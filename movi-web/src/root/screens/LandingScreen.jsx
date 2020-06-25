@@ -6,25 +6,66 @@ import { Link } from "react-router-dom";
 function LandingScreen() {
   const [searchText, setSearchText] = useState("");
 
-  var page = "/query=" + searchText;
+  var page = `/${searchText}`;
 
   function onTextChange(event) {
     setSearchText(event.target.value);
   }
 
+  const style = {
+    mainContainer: {
+      height: "100vh",
+      backgroundImage:
+        'linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),url("../assets/bg.jpg")',
+      backgroundSize: "cover",
+      color: "white",
+    },
+    logoText: {
+      top: "2%",
+      left: "2%",
+    },
+    inputGroup: {
+      margin: "20px 0 15px",
+    },
+    searchLabel: {
+      marginLeft: "10px",
+    },
+    mainContent: {
+      padding: "20px",
+      width: "50%",
+      position: "absolute",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+    },
+    titleText: {
+      fontWeight: "bold",
+      marginBottom: "40px",
+    },
+    text: {
+      textAlign: "center",
+      position: "static",
+    },
+  };
+
   return (
-    <div className="landing-screen-div">
-      <h2 className="logo-text">Movi</h2>
+    <div style={style.mainContainer}>
+      <h2 style={style.logoText}>Movi</h2>
 
-      <div className="main-content">
-        <h1 className="title-text">Watch Animes Online</h1>
+      <div style={style.mainContent}>
+        <h1 style={{ ...style.titleText, ...style.text }}>
+          Watch Animes Online
+        </h1>
 
-        <h3 className="subtitle-text">
+        <h3 style={style.text}>
           You can find all the animes of your choice. A guaranteed entertainment
           platform.
         </h3>
 
-        <div className="input-group input-group-lg">
+        <div
+          style={{ ...style.inputGroup, ...style.text }}
+          className="input-group input-group-lg"
+        >
           <input
             onChange={onTextChange}
             type="text"
@@ -40,13 +81,13 @@ function LandingScreen() {
                 id="button-addon2"
               >
                 <SearchIcon />
-                <span className="search-label">Search</span>
+                <span style={style.searchLabel}>Search</span>
               </button>
             </Link>
           </div>
         </div>
 
-        <h5 className="bottom-text">
+        <h5 style={style.text}>
           Ready? Steady? Go! Search something already...
         </h5>
       </div>

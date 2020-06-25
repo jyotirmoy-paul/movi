@@ -5,6 +5,8 @@ import Constants from "../../services/Util";
 import LoadingIndicator from "../components/LoadingIndicator";
 import EpisodeItem from "../components/EpisodeItem";
 
+const Entities = require("html-entities").AllHtmlEntities;
+
 export default function AnimeResultScreen({ match }) {
   const {
     params: { animeID },
@@ -45,7 +47,7 @@ export default function AnimeResultScreen({ match }) {
       ) : (
         <div>
           <strong>Description</strong>
-          <p>{descriptionText}</p>
+          <p>{new Entities().decode(descriptionText)}</p>
 
           {episodeList.map((e) => (
             <EpisodeItem data={e} />

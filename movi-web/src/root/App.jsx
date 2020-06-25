@@ -11,7 +11,7 @@ function App() {
     <Router>
       <Switch>
         <Route path="/" exact component={LandingScreen} />
-        <Route path="/query=:query" exact component={QueryResultScreen} />
+        <Route path="/:query" exact component={QueryResultScreen} />
         <Route path="/anime/:animeID" exact component={AnimeResultScreen} />
         <Route
           path="/anime/:animeID/:episodeID"
