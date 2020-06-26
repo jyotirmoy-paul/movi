@@ -1,5 +1,4 @@
 const mongoose = require("mongoose");
-const { databaseUrl } = require("../util/constants");
 
 class CacheService {
   constructor() {
@@ -8,7 +7,7 @@ class CacheService {
     }
 
     mongoose.set("useFindAndModify", false);
-    mongoose.connect(`${databaseUrl}/cacheDB`, {
+    mongoose.connect(process.env.mongodb, {
       useNewUrlParser: true,
       useUnifiedTopology: true,
     });

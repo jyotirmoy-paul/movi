@@ -17,7 +17,11 @@ function getJsonError(errorMessage) {
 }
 
 function sendResponse(res, data) {
+  res.setHeader("API-Info", "Anime Api v1.0.0 (http://moviapi.cloudno.de/)");
+  res.setHeader("Access-Control-Allow-Headers", "*");
+  res.setHeader("Access-Control-Allow-Methods", "GET, HEAD, OPTIONS");
   res.setHeader("Access-Control-Allow-Origin", "*");
+  res.setHeader("Access-Control-Request-Method", "GET");
   res.setHeader("Content-Type", "application/json; charset=utf-8");
   res.setHeader("Connection", "close");
 
