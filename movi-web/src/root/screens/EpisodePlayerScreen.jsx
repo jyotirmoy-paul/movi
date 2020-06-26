@@ -57,6 +57,7 @@ export default function EpisodePlayerScreen({ match }) {
       marginTop: "5px",
       marginBottom: "5px",
     },
+    strong: { marginTop: "10px" },
   };
 
   return (
@@ -66,8 +67,9 @@ export default function EpisodePlayerScreen({ match }) {
       ) : (
         <div>
           <h1>{animeName}</h1>
+
           <h5>
-            <strong>{epnum}</strong>
+            <strong style={style.strong}>{epnum}</strong>
           </h5>
 
           {videoUrl !== null ? (

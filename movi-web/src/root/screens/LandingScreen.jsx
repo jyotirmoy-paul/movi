@@ -21,6 +21,7 @@ function LandingScreen() {
       color: "white",
     },
     logoText: {
+      position: "absolute",
       top: "2%",
       left: "2%",
     },

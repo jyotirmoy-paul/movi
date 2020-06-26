@@ -5,6 +5,7 @@ function LoadingIndicator() {
     position: "absolute",
     top: "50%",
     left: "50%",
+    height: "100px",
     transform: "translate(-50%, -50%)",
   };
 
