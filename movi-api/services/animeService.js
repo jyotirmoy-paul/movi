@@ -29,7 +29,7 @@ class AnimeService {
     const url = `${baseUrl}search?q=${searchedQuery}`;
 
     return new Promise((resolve, reject) => {
-      Networking.getResponse(url)
+      Networking.getResponse(url, true)
         .then((response) => resolve(this.getRawJson(response).animes))
         .catch((err) => reject(err));
     });
@@ -39,7 +39,7 @@ class AnimeService {
     const url = `${baseUrl}/anime/${animeID}`;
 
     return new Promise((resolve, reject) => {
-      Networking.getResponse(url)
+      Networking.getResponse(url, true)
         .then((response) => resolve(this.getRawJson(response).anime))
         .catch((err) => reject(err));
     });
@@ -58,7 +58,7 @@ class AnimeService {
     const url = `${baseUrl}/anime/${animeID}/${episodeID}`;
 
     return new Promise((resolve, reject) => {
-      Networking.getResponse(url)
+      Networking.getResponse(url, true)
         .then((response) => {
           const jsonResponse = this.getRawJson(response);
 

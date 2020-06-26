@@ -1,5 +1,9 @@
 const express = require("express");
+
 const AnimeService = require("./services/animeService");
+const CacheService = require("./services/cacheService");
+
+new CacheService(); // start up the cache service
 
 const app = express();
 const _error = "ERROR";

@@ -10,6 +10,7 @@
   "license": "ISC",
   "dependencies": {
     "express": "^4.17.1",
+    "mongoose": "^5.9.20",
     "node-html-parser": "^1.2.19"
   }
 }
