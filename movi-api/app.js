@@ -1,12 +1,19 @@
 const express = require("express");
+const path = require("path");
 
 const AnimeService = require("./services/animeService");
 const CacheService = require("./services/cacheService");
 
 new CacheService(); // start up the cache service
+const _error = "ERROR";
 
 const app = express();
-const _error = "ERROR";
+
+app.use(express.static(path.join(__dirname, "build")));
+
+app.get("/", (_, res) => {
+  res.sendFile(path.join(__dirname, "build", "index.html"));
+});
 
 // utility function for buliding JSON structured error
 function getJsonError(errorMessage) {

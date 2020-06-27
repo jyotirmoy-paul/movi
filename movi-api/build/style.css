@@ -1,0 +1,88 @@
+body {
+  font-family: "Noto Sans JP", sans-serif;
+}
+
+p {
+  margin: 1.5rem 0;
+  font-size: 1.1rem;
+  color: #606c71;
+}
+
+ul {
+  margin: 1.5rem;
+}
+
+li {
+  font-size: 1.1rem;
+  color: #606c71;
+}
+
+h2 {
+  color: #e94057;
+}
+
+h3 {
+  color: #e94057;
+}
+
+code {
+  background-color: #f3f6fa;
+  padding: 5px;
+  border-radius: 8px;
+}
+
+#title-heading {
+  font-size: 3rem;
+  font-weight: 900;
+}
+
+#title-description {
+  margin: 5% 0;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+#title-anchor {
+  color: rgba(255, 255, 255, 0.85);
+}
+
+#title-anchor:hover {
+  color: white;
+}
+
+#title-button {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+#title-button:hover {
+  background-color: rgba(255, 255, 255, 0.7);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+#heading {
+  font-size: 3rem;
+}
+
+.header {
+  color: #fff;
+  text-align: center;
+  background-color: #8a2387;
+  background-image: linear-gradient(120deg, #8a2387, #e94057, #f27121);
+}
+
+.header .container-fluid {
+  padding: 5% 20%;
+}
+
+.main-content .container-fluid {
+  padding: 1% 20%;
+}
+
+.footer .container-fluid {
+  text-align: center;
+  margin-bottom: 1%;
+}
+
+.example {
+  margin: 0 10%;
+}

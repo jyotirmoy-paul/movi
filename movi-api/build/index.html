@@ -1,0 +1,168 @@
+<html>
+  <head>
+    <title>Movi Api</title>
+
+    <!-- google fonts  -->
+    <link
+      href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- FontAwesome Icons -->
+    <script
+      src="https://kit.fontawesome.com/c005421782.js"
+      crossorigin="anonymous"
+    ></script>
+
+    <!-- bootstrap css -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css"
+      integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk"
+      crossorigin="anonymous"
+    />
+    <!-- my stylesheet -->
+    <link rel="stylesheet" href="./style.css" />
+  </head>
+  <body>
+    <section class="header">
+      <div class="container-fluid">
+        <h1 id="title-heading">movi-api</h1>
+        <h5 id="title-description">
+          The anime API build by scraping
+          <a id="title-anchor" href="https://www1.kickassanime.rs"
+            >kickassanime</a
+          >!
+        </h5>
+        <a
+          id="title-button"
+          href="https://www.github.com/jyotirmoy-paul/movi/tree/master/movi-api"
+          type="button"
+          class="btn btn-outline-light btn-lg"
+        >
+          View on GitHub
+        </a>
+      </div>
+    </section>
+
+    <section class="main-content">
+      <div class="container-fluid">
+        <h1 id="heading">Movi API</h1>
+        <p>
+          This app build with Node.js, scrapes the anime website (here,
+          kickassanime) to fetch you a simple API for quering anime names,
+          seasons and episodes. The API also exposes you the direct playable
+          video URL.
+        </p>
+
+        <!-- features -->
+        <h2>Features</h2>
+
+        <ul>
+          <li>API built scraping a website, thus up-to-date data.</li>
+          <li>
+            Instead of always crawling the website, the app caches the already
+            searched contents upto 1 day, thus improving the response time.
+          </li>
+          <li>A programmable interface for querying animes and episodes</li>
+        </ul>
+
+        <hr />
+
+        <h2>Getting Started</h2>
+
+        <p>
+          If you want to setup your own version of Movi Api, follow the
+          instructions in this
+          <a
+            href="https://github.com/jyotirmoy-paul/movi/blob/master/movi-api/README.md"
+            >guide</a
+          >.
+        </p>
+
+        <hr />
+
+        <!-- api documentation -->
+        <h2>Api Documentation</h2>
+        <p>
+          Base URL for all endpoints
+          <code>https://movi-api.cloudno.de/api/</code>
+        </p>
+        <p>
+          <em
+            >The API is hosted on <a href="https://cloudno.de/">cloudno.de</a>.
+            The latency might be high as there are no intermediate CDNs
+            present.</em
+          >
+        </p>
+
+        <!-- endpoints -->
+        <h3>Endpoints</h3>
+
+        <!-- query end point -->
+        <p>
+          <code>/query/{anime-name}</code> Retrieve all the animes present,
+          matching the query {anime-name}
+        </p>
+        <p class="example">
+          <code
+            ><a href="https://movi-api.cloudno.de/api/query/death note"
+              >https://movi-api.cloudno.de/api/query/death note</a
+            ></code
+          >
+          searches for the anime name "Death Note"
+        </p>
+
+        <hr />
+
+        <!-- anime-id end point -->
+        <p>
+          <code>/anime/{anime-ID}</code> Retrieve all the episodes for the anime
+          recognized by anime-ID
+        </p>
+        <p class="example">
+          <code
+            ><a href="https://movi-api.cloudno.com/api/anime/death-note-241589"
+              >https://movi-api.cloudno.com/api/anime/death-note-241589</a
+            ></code
+          >
+          fetches all the episodes under that season referred by id
+          <strong>death-note-241589</strong>
+        </p>
+
+        <!-- episode-id for an anime-id end point -->
+        <p>
+          <code>/anime/{anime-ID}/{episode-id}</code> Retrieve the episode
+          details, along with a direct playable url (if possible)
+        </p>
+        <p class="example">
+          <code
+            ><a
+              href="https://movi-api.cloudno.com/api/anime/death-note-241589/episode-37-664743"
+              >https://movi-api.cloudno.com/api/anime/death-note-241589/episode-37-664743</a
+            ></code
+          >
+          fetches the details for episode no. 37, referred by episode id
+          <strong>episode-37-664743</strong> for anime named Death Node,
+          referred by anime id <strong>death-note-241589</strong>, along with a
+          direct playable url and other external server urls
+        </p>
+      </div>
+    </section>
+
+    <hr />
+
+    <section class="footer">
+      <div class="container-fluid">
+        <strong>
+          <a
+            href="https://www.github.com/jyotirmoy-paul/movi/tree/master/movi-api"
+            >movi-api</a
+          >
+          is maintained by
+          <a href="https://www.github.com/jyotirmoy-paul">jyotirmoy-paul</a>.
+        </strong>
+      </div>
+    </section>
+  </body>
+</html>
