@@ -47,6 +47,15 @@ function LandingScreen() {
       textAlign: "center",
       position: "static",
     },
+    footer: {
+      position: "absolute",
+      bottom: "10px",
+      left: "50%",
+      transform: "translate(-50%)",
+    },
+    a: {
+      color: "white",
+    },
   };
 
   return (
@@ -91,6 +100,22 @@ function LandingScreen() {
         <h5 style={style.text}>
           Ready? Steady? Go! Search something already...
         </h5>
+      </div>
+      <div style={style.footer}>
+        <strong>
+          <a
+            style={style.a}
+            href="https://github.com/jyotirmoy-paul/movi/tree/master/movi-web"
+          >
+            movi-web
+          </a>{" "}
+        </strong>
+        is maintained by{" "}
+        <strong>
+          <a style={style.a} href="https://github.com/jyotirmoy-paul">
+            jyotirmoy-paul
+          </a>
+        </strong>
       </div>
     </div>
   );
