@@ -1,5 +1,5 @@
 class Constants {
-  static baseUrl = "http://localhost:3000";
+  static baseUrl = "https://movi-api.cloudno.de";
 }
 
 export default Constants;

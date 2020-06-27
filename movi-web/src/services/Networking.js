@@ -1,9 +1,9 @@
-import http from "http";
+import https from "https";
 
 class Networking {
   static getResponse(url) {
     return new Promise((resolve, reject) => {
-      http
+      https
         .get(url, (response) => {
           var body = [];
           response.on("data", (c) => body.push(c));
