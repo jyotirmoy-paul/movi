@@ -32,6 +32,8 @@ class CacheService {
 
         if (response.expiry > new Date().getTime()) {
           resolve(response.cachedResponse);
+        } else {
+          reject("content-expired");
         }
       });
     });
