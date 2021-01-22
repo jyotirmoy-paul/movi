@@ -1,5 +1,5 @@
 # movi
-[![Netlify Status](https://api.netlify.com/api/v1/badges/a5f8f267-c9a2-4d3b-9e5e-c50eb8bb7eea/deploy-status)](https://app.netlify.com/sites/movi-anime/deploys)
+### STATUS: PROJECT ABANDONED
 
 Then anime streaming app [API](https://movi-api.cloudno.de) | [web](https://movi-anime.netlify.app/) | [android](movi-app/movi.apk)
 
